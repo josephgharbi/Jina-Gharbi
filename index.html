@@ -1,0 +1,1271 @@
+```html
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>jina gharbi | خدمات زیبایی</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Tahoma, Arial, sans-serif;
+            background: #fff8fb;
+            color: #4b2637;
+            line-height: 2;
+        }
+
+        header {
+            position: relative;
+            min-height: 620px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            padding: 50px 20px;
+            background: linear-gradient(
+                135deg,
+                #fff0f6,
+                #ffffff,
+                #ffe5ef
+            );
+        }
+
+        .hero-photo {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .hero-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.12;
+            filter: saturate(0.7);
+        }
+
+        .hero-photo::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(255, 240, 246, 0.9),
+                rgba(255, 255, 255, 0.92)
+            );
+        }
+
+        .logo,
+        header h1,
+        header h2,
+        header p {
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            width: 82px;
+            height: 82px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.8);
+            border: 2px solid #e89ab8;
+            color: #d75b8a;
+            font-size: 37px;
+            margin-bottom: 18px;
+            box-shadow: 0 10px 35px rgba(201,77,126,0.15);
+        }
+
+        header h1 {
+            font-size: clamp(42px, 8vw, 72px);
+            color: #c84f7e;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        header h2 {
+            font-size: clamp(17px, 3vw, 23px);
+            color: #6f3049;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        header p {
+            font-size: clamp(14px, 2.5vw, 18px);
+            color: #81566a;
+        }
+
+        .section-title {
+            text-align: center;
+            padding: 75px 20px 38px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: #c84f7e;
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            color: #896577;
+            font-size: 16px;
+        }
+
+        .services {
+            width: min(1050px, 92%);
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            padding-bottom: 35px;
+            align-items: start;
+        }
+
+        .service {
+            background: rgba(255,255,255,0.97);
+            border: 1px solid #f0bfd1;
+            border-radius: 25px;
+            padding: 34px 24px;
+            text-align: center;
+            box-shadow: 0 15px 45px rgba(201,77,126,0.10);
+            transition: 0.35s ease;
+            overflow: hidden;
+        }
+
+        .service:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 55px rgba(201,77,126,0.18);
+        }
+
+        .service.active {
+            border-color: #d75b8a;
+        }
+
+        .service-head {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .service-icon {
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            margin: 0 auto 17px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #fff0f6;
+            color: #d75b8a;
+            font-size: 29px;
+        }
+
+        .service h3 {
+            color: #b94670;
+            font-size: 24px;
+            margin-bottom: 7px;
+        }
+
+        .click-text {
+            color: #a37a8b;
+            font-size: 13px;
+        }
+
+        .service-details {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            margin-top: 0;
+            transition:
+                max-height 0.6s ease,
+                opacity 0.4s ease,
+                margin-top 0.4s ease;
+            text-align: right;
+            direction: rtl;
+        }
+
+        .service-details.show {
+            max-height: 5000px;
+            opacity: 1;
+            margin-top: 24px;
+        }
+
+        .service-details p {
+            margin-bottom: 13px;
+            color: #624353;
+            font-size: 14px;
+            line-height: 2.05;
+        }
+
+        .service-details strong {
+            color: #bd4d78;
+        }
+
+        .service-details ul {
+            padding-right: 21px;
+            margin-bottom: 17px;
+        }
+
+        .service-details li {
+            color: #624353;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .price-section {
+            width: min(1050px, 92%);
+            margin: 0 auto 80px;
+        }
+
+        .price-button-wrapper {
+            text-align: center;
+        }
+
+        .price-button {
+            border: none;
+            background: #d75b8a;
+            color: white;
+            padding: 15px 42px;
+            border-radius: 50px;
+            font-family: inherit;
+            font-size: 17px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(201,77,126,0.22);
+            transition: 0.3s ease;
+        }
+
+        .price-button:hover {
+            background: #bc456f;
+            transform: translateY(-3px);
+        }
+
+        .price-box {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition:
+                max-height 0.7s ease,
+                opacity 0.4s ease,
+                margin-top 0.4s ease;
+            background: #ffffff;
+            border: 1px solid #efbfd1;
+            border-radius: 28px;
+            box-shadow: 0 15px 50px rgba(201,77,126,0.12);
+            margin-top: 0;
+        }
+
+        .price-box.show {
+            max-height: 3000px;
+            opacity: 1;
+            margin-top: 28px;
+        }
+
+        .price-content {
+            padding: 35px;
+        }
+
+        .price-content > h2 {
+            text-align: center;
+            color: #c84f7e;
+            font-size: 30px;
+            margin-bottom: 30px;
+        }
+
+        .price-category {
+            background: #fff8fb;
+            border: 1px solid #f1c5d5;
+            border-radius: 22px;
+            padding: 25px;
+            margin-bottom: 22px;
+        }
+
+        .price-category:last-child {
+            margin-bottom: 0;
+        }
+
+        .price-category h3 {
+            color: #b94670;
+            font-size: 22px;
+            margin-bottom: 17px;
+            border-bottom: 1px solid #f0cad8;
+            padding-bottom: 10px;
+        }
+
+        .price-item {
+            padding: 13px 0;
+            border-bottom: 1px dashed #eac6d4;
+            color: #624353;
+            font-size: 15px;
+        }
+
+        .price-item:last-child {
+            border-bottom: none;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .price-item .name {
+            font-weight: 500;
+        }
+
+        .price-item .amount {
+            color: #c84f7e;
+            font-weight: bold;
+            white-space: nowrap;
+            direction: ltr;
+        }
+
+        .price-note {
+            color: #8c6a79;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .booking {
+            padding: 85px 20px;
+            text-align: center;
+            background: linear-gradient(
+                135deg,
+                #ffe8f1,
+                #fff7fa
+            );
+        }
+
+        .booking h2 {
+            font-size: 36px;
+            color: #c84f7e;
+            margin-bottom: 9px;
+        }
+
+        .booking p {
+            color: #765163;
+            margin-bottom: 24px;
+        }
+
+        .booking button {
+            border: none;
+            background: #d75b8a;
+            color: white;
+            padding: 14px 34px;
+            border-radius: 50px;
+            font-family: inherit;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(201,77,126,0.25);
+            transition: 0.3s;
+        }
+
+        .booking button:hover {
+            background: #bc456f;
+            transform: translateY(-3px);
+        }
+
+        .main-phone {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: 0.4s ease;
+        }
+
+        .main-phone.show {
+            max-height: 100px;
+            opacity: 1;
+            margin-top: 24px;
+        }
+
+        .main-phone a {
+            color: #c84f7e;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 26px;
+            font-weight: bold;
+            direction: ltr;
+            display: inline-block;
+        }
+
+        footer {
+            background: #ffdce9;
+            color: #714b5c;
+            text-align: center;
+            padding: 24px 20px;
+        }
+
+        footer strong {
+            color: #c84f7e;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        @media (max-width: 850px) {
+
+            .services {
+                grid-template-columns: 1fr;
+                width: min(600px, 92%);
+            }
+
+            header {
+                min-height: 540px;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .price-content {
+                padding: 20px;
+            }
+
+            .price-category {
+                padding: 18px;
+            }
+
+            .price-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 2px;
+            }
+
+            .price-item .amount {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            header h1 {
+                font-size: 42px;
+            }
+
+            header h2 {
+                font-size: 19px;
+            }
+
+            .section-title h2,
+            .booking h2 {
+                font-size: 30px;
+            }
+
+            .service-details p,
+            .service-details li {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- بخش بالای سایت -->
+
+    <header>
+
+        <div class="hero-photo">
+            <img src="jina.jpg" alt="jina gharbi">
+        </div>
+
+        <div class="logo">
+            ♡
+        </div>
+
+        <h1>
+            jina gharbi
+        </h1>
+
+        <h2>
+            زیبایی تو، امضای کار ماست.
+        </h2>
+
+        <p>
+            برای تو که به زیباییِ جزئیات اهمیت می‌دهی♡
+        </p>
+
+    </header>
+
+
+    <!-- خدمات -->
+
+    <section class="section-title">
+
+        <h2>
+            خدمات ما
+        </h2>
+
+        <p>
+            برای مشاهده توضیحات، روی هر خدمت کلیک کنید
+        </p>
+
+    </section>
+
+
+    <section class="services">
+
+        <!-- اکستنشن مژه -->
+
+        <div class="service">
+
+            <div
+                class="service-head"
+                onclick="toggleService(this)"
+            >
+
+                <div class="service-icon">
+                    ♡
+                </div>
+
+                <h3>
+                    اکستنشن مژه
+                </h3>
+
+                <div class="click-text">
+                    برای مشاهده توضیحات کلیک کنید
+                </div>
+
+            </div>
+
+            <div class="service-details">
+
+                <p>
+                    <strong>
+                        اکستنشن مژه چیست؟
+                    </strong>
+                </p>
+
+                <p>
+                    اکستنشن مژه روشی برای بلندتر، پرتر و خوش‌فرم‌تر
+                    نشان دادن مژه‌هاست که در آن تارهای مصنوعی،
+                    به‌صورت جداگانه و با استفاده از چسب مخصوص،
+                    روی مژه‌های طبیعی قرار می‌گیرند.
+                </p>
+
+                <p>
+                    در اکستنشن، تکنیک و میزان حجم با توجه به فرم چشم،
+                    تعداد و ضخامت مژه‌های طبیعی و همچنین سلیقه‌ی شما
+                    انتخاب می‌شود. هدف ما این است که نتیجه علاوه بر
+                    زیبایی، با شرایط مژه‌های طبیعی شما نیز هماهنگ باشد.
+                </p>
+
+                <p>
+                    <strong>
+                        آیا اکستنشن مژه به مژه‌های طبیعی آسیب می‌زند؟
+                    </strong>
+                </p>
+
+                <p>
+                    اکستنشن اصولاً نباید باعث آسیب جدی به مژه‌های
+                    طبیعی شود؛ اما سلامت مژه به نحوه‌ی اجرای کار،
+                    انتخاب وزن و اندازه‌ی مناسب، کیفیت مواد و
+                    مراقبت‌های بعد از آن بستگی دارد.
+                </p>
+
+                <p>
+                    استفاده از اکستنشن‌های بیش از حد سنگین،
+                    چسباندن چندین مژه طبیعی به یکدیگر، کشیدن یا
+                    کندن اکستنشن و رعایت نکردن مراقبت‌های لازم
+                    می‌تواند باعث ضعیف شدن یا ریزش موقت مژه‌های
+                    طبیعی شود.
+                </p>
+
+                <p>
+                    به همین دلیل، انتخاب تکنیک مناسب برای هر فرد
+                    اهمیت زیادی دارد.
+                </p>
+
+                <p>
+                    <strong>
+                        تکنیک‌های اکستنشن مژه
+                    </strong>
+                </p>
+
+                <p>
+                    <strong>
+                        کلاسیک (Classic)
+                    </strong>
+                    <br>
+                    در این تکنیک معمولاً روی هر مژه طبیعی یک تار
+                    اکستنشن قرار می‌گیرد. نتیجه نسبت به سایر
+                    تکنیک‌های حجیم، طبیعی‌تر و مرتب‌تر است.
+                </p>
+
+                <p>
+                    <strong>
+                        والیوم (Volume)
+                    </strong>
+                    <br>
+                    در این تکنیک فن‌های بسیار ظریف از چند تار سبک
+                    تشکیل شده و روی مژه طبیعی قرار می‌گیرند.
+                    نتیجه نسبت به کلاسیک پرتر و چشمگیرتر است.
+                </p>
+
+                <p>
+                    <strong>
+                        مگاوالیوم (Mega Volume)
+                    </strong>
+                    <br>
+                    حجیم‌ترین مدل در میان تکنیک‌های اکستنشن است
+                    و ظاهری بسیار پر و چشمگیر ایجاد می‌کند.
+                </p>
+
+                <p>
+                    <strong>
+                        اسپایکی (Spiky)
+                    </strong>
+                    <br>
+                    در تکنیک اسپایکی، چند تار مژه به‌صورت آماده
+                    و جفت‌شده کنار هم قرار می‌گیرند و نتیجه آن
+                    حالتی شبیه مژه‌های ریمل‌زده و مرتب دارد.
+                </p>
+
+                <p>
+                    در نهایت، انتخاب تکنیک فقط بر اساس اسم مدل
+                    انجام نمی‌شود؛ فرم چشم، وضعیت مژه‌های طبیعی
+                    و نتیجه‌ای که می‌خواهید داشته باشید اهمیت دارند.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- لیفت و لمینیت -->
+
+        <div class="service">
+
+            <div
+                class="service-head"
+                onclick="toggleService(this)"
+            >
+
+                <div class="service-icon">
+                    ♡
+                </div>
+
+                <h3>
+                    لیفت و لمینیت مژه
+                </h3>
+
+                <div class="click-text">
+                    برای مشاهده توضیحات کلیک کنید
+                </div>
+
+            </div>
+
+            <div class="service-details">
+
+                <p>
+                    <strong>
+                        لیفت و لمینیت مژه چیست؟
+                    </strong>
+                </p>
+
+                <p>
+                    لیفت مژه روشی برای حالت دادن و فر کردن مژه‌های
+                    طبیعی است که باعث می‌شود مژه‌ها بلندتر و مرتب‌تر
+                    به نظر برسند، بدون اینکه تار مصنوعی به مژه اضافه شود.
+                </p>
+
+                <p>
+                    در لمینیت، علاوه بر فرم‌دهی، از مواد تقویتی و
+                    مراقبتی مخصوص نیز در فرایند استفاده می‌شود تا
+                    مژه‌ها ظاهر مرتب‌تر، براق‌تر و خوش‌حالت‌تری داشته باشند.
+                </p>
+
+                <p>
+                    مناسب برای:
+                </p>
+
+                <ul>
+                    <li>
+                        افرادی که مژه طبیعی صاف یا رو به پایین دارند.
+                    </li>
+
+                    <li>
+                        کسانی که ظاهر طبیعی را ترجیح می‌دهند.
+                    </li>
+
+                    <li>
+                        افرادی که نمی‌خواهند اکستنشن انجام دهند.
+                    </li>
+
+                    <li>
+                        کسانی که می‌خواهند مژه‌ها بدون فرمژه حالت‌دار باشند.
+                    </li>
+                </ul>
+
+                <p>
+                    <strong>
+                        لیفت و لمینیت ابرو چیست؟
+                    </strong>
+                </p>
+
+                <p>
+                    لیفت ابرو باعث می‌شود تارهای ابرو به سمت دلخواه
+                    حالت داده و مرتب‌تر شوند و ابروها ظاهر لیفت‌شده
+                    و منظم‌تری پیدا کنند.
+                </p>
+
+                <p>
+                    مناسب برای:
+                </p>
+
+                <ul>
+                    <li>
+                        ابروهای رو به پایین یا نامرتب
+                    </li>
+
+                    <li>
+                        ابروهایی که تارهای بلند و خوابیده دارند
+                    </li>
+
+                    <li>
+                        افرادی که مدل طبیعی و مرتب را دوست دارند
+                    </li>
+
+                    <li>
+                        کسانی که می‌خواهند فرم ابرو مرتب‌تر باشد
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <!-- خدمات ناخن -->
+
+        <div class="service">
+
+            <div
+                class="service-head"
+                onclick="toggleService(this)"
+            >
+
+                <div class="service-icon">
+                    ♡
+                </div>
+
+                <h3>
+                    خدمات ناخن
+                </h3>
+
+                <div class="click-text">
+                    برای مشاهده توضیحات کلیک کنید
+                </div>
+
+            </div>
+
+            <div class="service-details">
+
+                <p>
+                    <strong>
+                        لاک ژل چیست؟
+                    </strong>
+                </p>
+
+                <p>
+                    لاک ژل نوعی لاک با ماندگاری بیشتر از لاک معمولی
+                    است که با دستگاه مخصوص خشک و تثبیت می‌شود.
+                    نتیجه کار براق، مرتب و بادوام است.
+                </p>
+
+                <p>
+                    لاک ژل برای افرادی مناسب است که ظاهر طبیعی
+                    ناخن خودشان را دوست دارند و ماندگاری بیشتر
+                    برایشان مهم است.
+                </p>
+
+                <p>
+                    <strong>
+                        چرا لاک ژل مداوم می‌تواند به ناخن آسیب بزند؟
+                    </strong>
+                </p>
+
+                <p>
+                    انجام مداوم لاک ژل بدون توجه به وضعیت ناخن و
+                    به‌خصوص برداشتن نادرست مواد می‌تواند باعث
+                    نازک شدن، خشکی یا شکنندگی ناخن شود.
+                </p>
+
+                <p>
+                    <strong>
+                        لمینت / کاور ناخن چیست؟
+                    </strong>
+                </p>
+
+                <p>
+                    لمینت یا کاور برای افرادی انجام می‌شود که
+                    می‌خواهند ناخن طبیعی خودشان را حفظ کنند اما
+                    در عین حال استحکام و فرم مرتب‌تری داشته باشند.
+                </p>
+
+                <p>
+                    <strong>
+                        کاشت ناخن
+                    </strong>
+                </p>
+
+                <p>
+                    کاشت ناخن برای افرادی مناسب است که علاوه بر
+                    استحکام، به دنبال افزایش طول و تغییر فرم ناخن هستند.
+                </p>
+
+                <p>
+                    <strong>
+                        ترمیم ناخن
+                    </strong>
+                </p>
+
+                <p>
+                    با رشد ناخن طبیعی، قسمت جدیدی از ناخن در ریشه
+                    ظاهر می‌شود و فاصله‌ای بین مواد و ریشه ایجاد می‌شود.
+                    در صورت سالم بودن مواد و ناخن، می‌توان با ترمیم،
+                    ظاهر ناخن را مرتب و یکدست کرد.
+                </p>
+
+                <p>
+                    <strong>
+                        کدام خدمت برای من مناسب‌تر است؟
+                    </strong>
+                </p>
+
+                <ul>
+                    <li>
+                        فقط رنگ و ظاهر مرتب → لاک ژل
+                    </li>
+
+                    <li>
+                        استحکام و فرم مرتب‌تر → لمینت / کاور
+                    </li>
+
+                    <li>
+                        افزایش طول و تغییر فرم → کاشت
+                    </li>
+
+                    <li>
+                        ترمیم مواد قبلی → ترمیم
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- لیست قیمت -->
+
+    <section class="price-section">
+
+        <div class="price-button-wrapper">
+
+            <button
+                class="price-button"
+                onclick="togglePrices()"
+            >
+                لیست قیمت‌ها
+            </button>
+
+        </div>
+
+
+        <div
+            id="priceBox"
+            class="price-box"
+        >
+
+            <div class="price-content">
+
+                <h2>
+                    لیست قیمت خدمات
+                </h2>
+
+
+                <!-- قیمت اکستنشن مژه -->
+
+                <div class="price-category">
+
+                    <h3>
+                        لیست قیمت اکستنشن مژه
+                    </h3>
+
+                    <div class="price-item">
+
+                        <div class="price-row">
+                            <span class="name">
+                                اکستنشن کلاسیک
+                            </span>
+
+                            <span class="amount">
+                                1,000,000 تومان
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="price-item">
+
+                        <div class="price-row">
+                            <span class="name">
+                                اکستنشن اسپایکی
+                            </span>
+
+                            <span class="amount">
+                                1,100,000 تومان
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="price-item">
+
+                        <div class="price-row">
+                            <span class="name">
+                                اکستنشن والیوم
+                            </span>
+
+                            <span class="amount">
+                                1,300,000 تومان
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="price-item">
+
+                        <div class="price-row">
+                            <span class="name">
+                                اکستنشن مگاوالیوم
+                            </span>
+
+                            <span class="amount">
+                                1,500,000 تومان
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="price-item">
+
+                        <div class="price-row">
+                            <span class="name">
+                                اکستنشن ژورنال
+                            </span>
+
+                            <span class="amount">
+                                1,600,000 / 1,900,000 تومان
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="price-item">
+
+                        <div class="price-row">
+                            <span class="name">
+                                ترمیم
+                            </span>
+
+                            <span class="amount">
+                                300,000 تومان
+                            </span>
+                        </div>
+
+                        <div class="price-note">
+                            ۳۰۰ تومان از قیمت کاشت اولیه کم می‌شود.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- قیمت لیفت و لمینیت -->
+
+                <div class="price-category">
+
+                    <h3>
+                        لیست قیمت لیفت و لمینیت
+                    </h3>
+
+
+                    <div class="price-item">
+
+                        <div class="price-row">
+                            <span class="name">
+                                لیفت و لمینیت مژه
+                            </span>
+
+                            <span class="amount">
+                                800,000 تومان
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="price-item">
+
+                        <div class="price-row">
+                            <span class="name">
+                                لیفت و لمینیت ابرو
+                            </span>
+
+                            <span class="amount">
+                                950,000 تومان
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="price-item">
+
+                        <div class="price-row">
+                            <span class="name">
+                                لیفت ابروهای کاشت
+                            </span>
+
+                            <span class="amount">
+                                1,100,000 تومان
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- قیمت ناخن -->
+
+                <div class="price-category">
+
+                    <h3>
+                        لیست قیمت ناخن
+                    </h3>
+
+
+                    <div class="price-item">
+
+                        <div class="price-row">
+                            <span class="name">
+                                لاک ژل
+                            </span>
+
+                            <span class="amount">
+                                450,000 تومان
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="price-item">
+
+                        <div class="price-row">
+                            <span class="name">
+                                ترمیم
+                            </span>
+
+                            <span class="amount">
+                                600,000 / 800,000 تومان
+                            </span>
+                        </div>
+
+                        <div class="price-note">
+                            بستگی به قد ناخن دارد.
+                        </div>
+
+                    </div>
+
+
+                    <div class="price-item">
+
+                        <div class="price-row">
+                            <span class="name">
+                                لمینت / کاور
+                            </span>
+
+                            <span class="amount">
+                                700,000 / 900,000 تومان
+                            </span>
+                        </div>
+
+                        <div class="price-note">
+                            بستگی به قد ناخن طبیعی دارد.
+                        </div>
+
+                    </div>
+
+
+                    <div class="price-item">
+
+                        <div class="price-row">
+                            <span class="name">
+                                کاشت اولیه
+                            </span>
+
+                            <span class="amount">
+                                900,000 / 1,200,000 تومان
+                            </span>
+                        </div>
+
+                        <div class="price-note">
+                            بستگی به قد کاشت دارد.
+                        </div>
+
+                    </div>
+
+
+                    <div class="price-item">
+
+                        <div class="price-row">
+                            <span class="name">
+                                مانیکور
+                            </span>
+
+                            <span class="amount">
+                                250,000 تومان
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- نوبت دهی -->
+
+    <section class="booking">
+
+        <h2>
+            نوبت دهی
+        </h2>
+
+        <p>
+            برای دریافت نوبت روی دکمه زیر کلیک کنید.
+        </p>
+
+        <button onclick="showMainPhone()">
+            دریافت نوبت
+        </button>
+
+        <div
+            id="mainPhone"
+            class="main-phone"
+        >
+
+            <a href="tel:09010322443">
+                09010322443
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- سازنده -->
+
+    <footer>
+
+        <p>
+            <strong>
+                joseph gharbi
+            </strong>
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        function toggleService(clickedHead) {
+
+            const clickedCard =
+                clickedHead.closest(".service");
+
+            const clickedDetails =
+                clickedCard.querySelector(".service-details");
+
+            const wasOpen =
+                clickedDetails.classList.contains("show");
+
+
+            document.querySelectorAll(".service").forEach(function(card) {
+
+                card.classList.remove("active");
+
+                const details =
+                    card.querySelector(".service-details");
+
+                details.classList.remove("show");
+
+            });
+
+
+            if (!wasOpen) {
+
+                clickedCard.classList.add("active");
+
+                clickedDetails.classList.add("show");
+
+            }
+
+        }
+
+
+        function togglePrices() {
+
+            const priceBox =
+                document.getElementById("priceBox");
+
+            priceBox.classList.toggle("show");
+
+        }
+
+
+        function showMainPhone() {
+
+            const phone =
+                document.getElementById("mainPhone");
+
+            phone.classList.toggle("show");
+
+        }
+
+    </script>
+
+</body>
+
+</html>
+```
